@@ -1,0 +1,23 @@
+:root {
+    --main-background: #181818;
+    --secondary-background: #242424;
+    --main-text: #fff;
+    --secondary-text: #F2D13E;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: var(--main-background);
+    color: var(--main-text);
+}
+
+header {
+    position: sticky;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
