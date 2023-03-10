@@ -19,5 +19,10 @@ header {
 nav ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: stretch;
+    list-style: none;
+}
+
+nav ul li {
+    flex-grow: 1;
 }
