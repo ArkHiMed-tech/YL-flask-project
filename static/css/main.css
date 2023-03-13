@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap');
+
 :root {
     --main-background: #181818;
     --secondary-background: #242424;
@@ -5,15 +7,36 @@
     --secondary-text: #F2D13E;
 }
 
+* {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--main-text);
+}
+
+
+
 html, body {
     padding: 0;
     margin: 0;
     background-color: var(--main-background);
     color: var(--main-text);
+    font-family: 'Open Sans', serif;
 }
 
 header {
     position: sticky;
+    height: 5vh;
+}
+
+nav {
+    height: 100%;
 }
 
 nav ul {
@@ -21,8 +44,58 @@ nav ul {
     flex-direction: row;
     justify-content: stretch;
     list-style: none;
+    height: 100%;
 }
 
 nav ul li {
     flex-grow: 1;
+}
+
+nav a {
+    width: 100%;
+    height: 100%;
+}
+
+a button {
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-background);
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    transition: all 0.15s ease-out;
+}
+
+a button:hover {
+    filter: brightness(1.3);
+}
+
+a button:active {
+    filter: none;
+    color: var(--secondary-text);
+    background-color: var(--main-background);
+    transform: scale(0.94);
+}
+
+.banner-top {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+.games section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 5vh;
+    column-gap: 5vw;
+    margin: 0 15vw;
+}
+
+div.game {
+    border: 4px dashed var(--secondary-text);
+}
+
+.games section img {
+    height: 35vh;
+    object-fit: cover;
 }

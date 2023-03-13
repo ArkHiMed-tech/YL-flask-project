@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +11,7 @@
     <header>
         <nav>
             <ul>
+                <li class="logo"></li>
                 <li><a><button>Main</button></a></li>
                 <li><a><button>Page</button></a></li>
                 <li><a><button>Another link</button></a></li>
@@ -19,10 +20,20 @@
         </nav>
     </header>
     <main>
-        <div class="intro"></div>
+        <div class="intro">
+            <img src="{{ url_for('static', filename='img/banner-top.jpg') }}" class="banner-top">
+        </div>
         <div class="games">
             <section>
-
+                <div class="game"><img src="{{ url_for('static', filename='img/game1.jpg') }}" alt=""></div>
+                <div class="game"><img src="{{ url_for('static', filename='img/game2.jpg') }}" alt=""></div>
+                <div class="game"><img src="{{ url_for('static', filename='img/game3.jpg') }}" alt=""></div>
+                <div class="game"><img src="{{ url_for('static', filename='img/game4.jpg') }}" alt=""></div>
+                <div class="game"><img src="{{ url_for('static', filename='img/game5.jpg') }}" alt=""></div>
+                <div class="game"><img src="{{ url_for('static', filename='img/game6.jpg') }}" alt=""></div>
+                <div class="game"><img src="{{ url_for('static', filename='img/game7.jpg') }}" alt=""></div>
+                <div class="game"><img src="{{ url_for('static', filename='img/game8.jpg') }}" alt=""></div>
+                <div class="game"><img src="{{ url_for('static', filename='img/game9.jpg') }}" alt=""></div>
             </section>
         </div>
         <div class="news"></div>
