@@ -122,3 +122,13 @@ div.game-card {
 .game-card .container a {
     height: 5vh;
 }
+
+.game-card .container a button {
+    background-color: var(--secondary-text);
+    border-radius: 5px;
+    color: var(--main-background);
+}
+
+.game-card .container a button:hover {
+    filter: brightness(0.8);
+}
