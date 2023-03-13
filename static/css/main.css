@@ -32,6 +32,8 @@ html, body {
 
 header {
     position: sticky;
+    top: 0;
+    left: 0;
     height: 5vh;
 }
 
@@ -88,7 +90,7 @@ a button:active {
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 5vh;
     column-gap: 5vw;
-    margin: 0 15vw;
+    margin: 10vh 15vw 0;
 }
 
 div.game {
