@@ -20,18 +20,17 @@
     color: var(--main-text);
 }
 
-
-
 html, body {
     padding: 0;
     margin: 0;
-    background-color: var(--main-background);
+    background: no-repeat fixed 30%/cover url(/static/img/background.jpg);
     color: var(--main-text);
     font-family: 'Open Sans', serif;
 }
 
 header {
     position: sticky;
+    z-index: 10;
     top: 0;
     left: 0;
     height: 5vh;
@@ -89,15 +88,37 @@ a button:active {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 5vh;
-    column-gap: 5vw;
-    margin: 10vh 15vw 0;
+    column-gap: 3vw;
+    margin: 10vh 10vw 0;
 }
 
-div.game {
-    border: 4px dashed var(--secondary-text);
+div.game-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .games section img {
     height: 35vh;
+    width: 100%;
     object-fit: cover;
+    transition: all 0.15s ease-in;
+}
+
+.games section img:hover {
+    transform: scale(1.06);
+}
+
+.game-card .container {
+    padding: 1vh 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-card h3 {
+    color: var(--secondary-text);
+}
+
+.game-card .container a {
+    height: 5vh;
 }

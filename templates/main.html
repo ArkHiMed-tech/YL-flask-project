@@ -21,19 +21,24 @@
     </header>
     <main>
         <div class="intro">
-            <img src="{{ url_for('static', filename='img/banner-top.jpg') }}" class="banner-top">
+            <img src="{{ url_for('static', filename='img/banner.jpg') }}" class="banner-top">
         </div>
+        <div class="search"></div>
         <div class="games">
             <section>
-                <div class="game"><img src="{{ url_for('static', filename='img/game1.jpg') }}" alt=""></div>
-                <div class="game"><img src="{{ url_for('static', filename='img/game2.jpg') }}" alt=""></div>
-                <div class="game"><img src="{{ url_for('static', filename='img/game3.jpg') }}" alt=""></div>
-                <div class="game"><img src="{{ url_for('static', filename='img/game4.jpg') }}" alt=""></div>
-                <div class="game"><img src="{{ url_for('static', filename='img/game5.jpg') }}" alt=""></div>
-                <div class="game"><img src="{{ url_for('static', filename='img/game6.jpg') }}" alt=""></div>
-                <div class="game"><img src="{{ url_for('static', filename='img/game7.jpg') }}" alt=""></div>
-                <div class="game"><img src="{{ url_for('static', filename='img/game8.jpg') }}" alt=""></div>
-                <div class="game"><img src="{{ url_for('static', filename='img/game9.jpg') }}" alt=""></div>
+                {% for i in range(1,10) %}
+                    <div class="game-card">
+                        <img src="{{ url_for('static', filename='img/game' ~ i ~ '.jpg') }}" alt="">
+                        <div class="container">
+                            <h3>Name</h3>
+                            <p>Rating: 8/10</p>
+                            <p>Genre: action</p>
+                            <p>Tags: satisfactory, shooting, furry</p>
+                            <br>
+                            <a><button>Show more</button></a>
+                        </div>
+                    </div>
+                {% endfor %}
             </section>
         </div>
         <div class="news"></div>
