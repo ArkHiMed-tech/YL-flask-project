@@ -15,7 +15,7 @@ def main():
 def check_notification():
     notification_data = request.get_json()
     if notification_data:
-        pre_hash = f"{notification_data['notification_type']}&{notification_data['operation_id']}&{notification_data['amount']}&{notification_data['currency']}&{notification_data['datetime']}&{notification_data['sender']}&{notification_data['codepro']}&{notification_secret}&{notification_data['label']}"
+        pre_hash = bytes(f"{notification_data['notification_type']}&{notification_data['operation_id']}&{notification_data['amount']}&{notification_data['currency']}&{notification_data['datetime']}&{notification_data['sender']}&{notification_data['codepro']}&{notification_secret}&{notification_data['label']}", encoding='utf-8')
         hashed_obj = hashlib.sha1(pre_hash)
         hashed = hashed_obj.hexdigest()
         if notification_data['sha1_hash'] == hashed:
