@@ -34,6 +34,7 @@ header {
     top: 0;
     left: 0;
     height: 5vh;
+    background-color: var(--main-background);
 }
 
 nav {
