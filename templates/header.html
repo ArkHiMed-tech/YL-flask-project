@@ -5,7 +5,7 @@
             <li><a><button>Main</button></a></li>
             <li><a><button>Page</button></a></li>
             <li><a><button>Another link</button></a></li>
-            <li>{% if session.get('type', 'None') != 'None' %} <a href="./logout"><button>Logout</button></a> {% else %}<a href="./login"><button>Login</button></a>{% endif %}</li>
+            <li>{% if session.get('type', 'None') != 'None' %} <a href="./logout"><button>Logout</button></a> {% else %}<a href="./login"><button style="background-color: red;">Login</button></a>{% endif %}</li>
         </ul>
     </nav>
 </header>
