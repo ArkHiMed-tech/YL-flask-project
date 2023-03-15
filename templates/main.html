@@ -16,6 +16,11 @@
         <div class="search"></div>
         <!-- payment button-->
         <iframe src="https://yoomoney.ru/quickpay/fundraise/button?billNumber=K88p2gHYpe0.230315&" width="330" height="50" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+        {% if session.get('type', 'None') != 'None' %}
+        {{ session['type'] }}
+        {{ session['user'] }}
+        {{ session['password'] }}
+        {% endif %}
         <div class="games">
             <section>
                 {% for i in range(1,10) %}

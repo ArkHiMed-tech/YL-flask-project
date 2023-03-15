@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session, url_for
 import hashlib
 import sqlite3
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '$tr0ng pa$$w0rd'
+
 conn = sqlite3.connect('users.db', check_same_thread=False)
 cursor = conn.cursor()
 
@@ -12,7 +14,27 @@ notification_secret = "h1KPMxY/JxcuINbeQsAQTeyd"
 
 @app.route("/")
 def main():
-    return render_template('main.html', context={})
+    return render_template('main.html', context={'session': session})
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login_form.html', context={})
+    else:
+        if request.form['type'] == 'registration':
+            session['user'] = request.form['email']
+            session['password'] = request.form['password']
+            session['type'] = 'registered'
+        else:
+            session['type'] = 'logined'
+            session['user'] = request.form['email']
+            session['password'] = request.form['password']
+        return redirect(url_for('main'))
+    
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('main'))
 
 
 @app.route("/payment_notifications", methods=['POST'])

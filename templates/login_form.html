@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_form.css') }}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#" method="post">
+                <h1>Создай аккаунт</h1>
+                <input type="hidden" name="type" value="registration">
+                <input type="text" placeholder="Имя" name="name" required/>
+                <input type="email" placeholder="Email" name="email" pattern="[A-Za-z0-9]+@[A-Za-z]+\.[A-Za-z]+" required/>
+                <input type="password" placeholder="Пароль" name="password" pattern="[0-9a-zA-Z]{8,}" required/>
+                <button class="register" formaction="?">Вперёд!</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#" method="post">
+                <h1>Вход</h1>
+                <input type="hidden" name="type" value="login">
+                <input type="email" placeholder="Email" name="email" pattern="[A-Za-z0-9]+@[A-Za-z]+\.[A-Za-z]+" required/>
+                <input type="password" placeholder="Пароль" name="password" required/>
+                <a href="#">Забыл пароль?</a>
+                <button class="login" formaction="?">Войти</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Привет!</h1>
+                    <p>Если у тебя уже есть аккаунт, войди в него</p>
+                    <button class="ghost" id="signIn">Вход</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Привет!</h1>
+                    <p>Чтобы мы могли узнать тебя получше, создай аккаунт</p>
+                    <button class="ghost" id="signUp">Регистрация</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/login_form.js') }}"></script>
+</body>
+</html>
