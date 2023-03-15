@@ -1,8 +1,12 @@
 from flask import Flask, render_template, request
 import hashlib
+import sqlite3
 
 app = Flask(__name__)
-payments = {'game1': 100, 'game2': 200}
+conn = sqlite3.connect('users.db', check_same_thread=False)
+cursor = conn.cursor()
+
+payments = {'01': 100, '02': 200}
 notification_secret = "h1KPMxY/JxcuINbeQsAQTeyd"
 
 
@@ -20,10 +24,10 @@ def check_notification():
         hashed = hashed_obj.hexdigest()
         if notification_data['sha1_hash'] == hashed:
             if notification_data['label'] in payments.keys():
-                if notification_data['payment'] == payments[notification_data['label']]:
-                    return "OK"  # give user access
-
-
+                if notification_data['payment'] == payments[notification_data['label'][0:2]]:
+                    cursor.execute(f"INSERT INTO owned (user_id, {notification_data['label'][0:2]}) VALUES (?, ?)",
+                                   (notification_data['label'][2:], 1))  # putting TRUE in user's owned games
+    return "OK"
 
 
 if __name__ == '__main__':
