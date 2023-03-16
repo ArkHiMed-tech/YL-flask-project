@@ -87,10 +87,27 @@ a button:active {
 
 .games section {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     row-gap: 5vh;
     column-gap: 3vw;
     margin: 10vh 10vw 0;
+    }
+
+@media (min-aspect-ratio: 100/175) {
+    .games section {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-aspect-ratio: 10/8) {
+    .games section {
+        background-color: green;
+    }
+}
+
+@media (max-aspect-ratio: 8/10) {
+    .games section {
+        grid-template-columns: 1fr;
+    }
 }
 
 div.game-card {
