@@ -100,7 +100,7 @@ a button:active {
 
 @media (max-aspect-ratio: 10/8) {
     .games section {
-        background-color: green;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
