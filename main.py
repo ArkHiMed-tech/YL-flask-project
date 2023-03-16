@@ -8,13 +8,16 @@ app.config['SECRET_KEY'] = '$tr0ng pa$$w0rd'
 conn = sqlite3.connect('users.db', check_same_thread=False)
 cursor = conn.cursor()
 
-payments = {'01': 100, '02': 200}
+games_info = dict()
 notification_secret = "h1KPMxY/JxcuINbeQsAQTeyd"
+for game in cursor.execute("SELECT id, price, name FROM games").fetchall():
+    games_info[game[0]] = (game[1], game[2])
 
 
 @app.route("/")
 def main():
     return render_template('main.html', context={'session': session})
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -30,7 +33,8 @@ def login():
             session['user'] = request.form['email']
             session['password'] = request.form['password']
         return redirect(url_for('main'))
-    
+
+
 @app.route('/logout')
 def logout():
     session.clear()
@@ -45,8 +49,8 @@ def check_notification():
         hashed_obj = hashlib.sha1(pre_hash)
         hashed = hashed_obj.hexdigest()
         if notification_data['sha1_hash'] == hashed:
-            if notification_data['label'] in payments.keys():
-                if notification_data['payment'] == payments[notification_data['label'][0:2]]:
+            if notification_data['label'] in games_info.keys():
+                if notification_data['payment'] == games_info[notification_data['label'][0:2]]:
                     cursor.execute(f"INSERT INTO owned (user_id, {notification_data['label'][0:2]}) VALUES (?, ?)",
                                    (notification_data['label'][2:], 1))  # putting TRUE in user's owned games
     return "OK"
