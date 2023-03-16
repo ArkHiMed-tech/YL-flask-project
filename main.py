@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect, session, url_for
 import hashlib
+import logging
 import sqlite3
+
+logging.basicConfig(filename='logs.txt', level=logging.INFO)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '$tr0ng pa$$w0rd'
@@ -9,6 +12,7 @@ conn = sqlite3.connect('users.db', check_same_thread=False)
 cursor = conn.cursor()
 
 games_info = dict()
+client_id = "20EB4A616D297EC0B26A1B9A6D6C712AD71CF5399781B7F53D5F17FED125E24B"
 notification_secret = "h1KPMxY/JxcuINbeQsAQTeyd"
 for game in cursor.execute("SELECT id, price, name FROM games").fetchall():
     games_info[game[0]] = (game[1], game[2])
@@ -43,16 +47,16 @@ def logout():
 
 @app.route("/payment_notifications", methods=['POST'])
 def check_notification():
-    notification_data = request.get_json()
-    if notification_data:
-        pre_hash = bytes(f"{notification_data['notification_type']}&{notification_data['operation_id']}&{notification_data['amount']}&{notification_data['currency']}&{notification_data['datetime']}&{notification_data['sender']}&{notification_data['codepro']}&{notification_secret}&{notification_data['label']}", encoding='utf-8')
-        hashed_obj = hashlib.sha1(pre_hash)
-        hashed = hashed_obj.hexdigest()
-        if notification_data['sha1_hash'] == hashed:
-            if notification_data['label'] in games_info.keys():
-                if notification_data['payment'] == games_info[notification_data['label'][0:2]]:
-                    cursor.execute(f"INSERT INTO owned (user_id, {notification_data['label'][0:2]}) VALUES (?, ?)",
-                                   (notification_data['label'][2:], 1))  # putting TRUE in user's owned games
+    logging.info(request.form)
+    pre_hash = bytes(f"{request.form.get('notification_type')}&{request.form.get('operation_id')}&{request.form.get('amount')}&{request.form.get('currency')}&{request.form.get('datetime')}&{request.form.get('sender')}&{request.form.get('codepro')}&{notification_secret}&{request.form.get('label')}", encoding='utf-8')
+    hashed_obj = hashlib.sha1(pre_hash)
+    hashed = hashed_obj.hexdigest()
+    if request.form.get('sha1_hash') == hashed:
+        print('hash_check passed')
+        if request.form.get('label') in games_info.keys():
+            if request.form.get('payment') == request.form.get('label')[0:2]:
+                cursor.execute(f"INSERT INTO owned (user_id, {request.form.get('label')[0:2]}) VALUES (?, ?)",
+                               (request.form.get('label')[2:], 1))  # putting TRUE in user's owned games
     return "OK"
 
 
