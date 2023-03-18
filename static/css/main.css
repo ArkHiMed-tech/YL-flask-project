@@ -90,7 +90,15 @@ a button:active {
     row-gap: 5vh;
     column-gap: 3vw;
     margin: 10vh 10vw 0;
-    }
+}
+
+.payment-button {
+        position: absolute center;
+}
+
+.games {
+    margin: 0px 0px 5vh 0px;
+}
 
 @media (min-aspect-ratio: 100/175) {
     .games section {
